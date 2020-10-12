@@ -1,0 +1,12 @@
+{
+  "name": "online-shop-backend",
+  "version": "1.0.0",
+  "description": "online backend shop using node js as a native server side language and express framework and mongodb for persisting data in a nosql db",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
