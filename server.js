@@ -1,6 +1,9 @@
-const h = require('http');
-const s = h.createServer((req,res)=>{
-    res.end("Hello Yassine :) !!");
-})
+const http = require('http');
+const app = require('./app');
+const { env } = require('process');
 
-s.listen(process.env.PORT || 3000);
+app.set('port',env.process.PORT || 3000);
+
+const server = http.createServer(app);
+
+server.listen(process.env.PORT || 3000);
