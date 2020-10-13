@@ -2,6 +2,17 @@ const express = require('express');
 const app = express();
 const body = require('body-parser');
 
+const mongoose = require('mongoose');
+
+
+mongoose.connect('mongodb+srv://jimbob:passwordYassPass123@cluster0-pme76.mongodb.net/test?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+
+
 app.use(body.json());
 
 app.use((req, res, next) => {
