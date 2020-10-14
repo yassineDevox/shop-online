@@ -4,6 +4,7 @@ const body = require('body-parser');
 
 const mongoose = require('mongoose');
 const Thing = require('./models/thing');
+const thing = require('./models/thing');
 
 
 
@@ -48,5 +49,13 @@ app.get('/api/stuff', (req, res, next) => {
 
 });
 
+app.get('/api/stuff/:id',(req,res,next)=>{
+
+  // console.log(req.params.id);
+  thing.findOne({_id:req.params.id})
+  .then((thing)=>res.status(200).json(thing))
+  .catch((error)=>res.status(404).json({error}))
+  
+});
 
 module.exports = app;
