@@ -17,7 +17,7 @@ thingShemas = mongoose.Schema({
     type: String,
     require: true,
   },
-  imgUrl: {
+  imageUrl: {
     type: String,
     require: true,
   },
