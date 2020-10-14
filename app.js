@@ -25,7 +25,7 @@ app.use((req, res, next) => {
     next();
   });
 
-  app.post('/api/stuff', (req, res, next) => {
+  app.post('/api/stuff', (req, res) => {
    
     console.log(req.body);
     delete req.body._id;
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   });
 
   
-app.get('/api/stuff', (req, res, next) => {
+app.get('/api/stuff', (req, res) => {
 
   Thing.find()
   .then((things)=>res.status(200).json(things))
@@ -48,7 +48,7 @@ app.get('/api/stuff', (req, res, next) => {
 
 });
 
-app.get('/api/stuff/:id',(req,res,next)=>{
+app.get('/api/stuff/:id',(req,res)=>{
 
   // console.log(req.params.id);
   Thing.findOne({_id:req.params.id})
@@ -57,12 +57,18 @@ app.get('/api/stuff/:id',(req,res,next)=>{
 
 });
 
-app.put('/api/stuff/:id',(req,res,next)=>{
+app.put('/api/stuff/:id',(req,res)=>{
   
   Thing.updateOne({_id:req.params.id},{...req.body,_id:req.params.id})
   .then(()=>res.status(201).json({message:"thing updated successfully"}))
   .catch(err=>res.status(400).json({err}))
 
+})
+
+app.delete('/api/stuff/:id',(req,res)=>{
+  Thing.deleteOne({_id:req.params.id})
+  .then(()=> res.status(200).json({message:"Thing has been delete !"}))
+  .catch((err)=>res.status(400).json({err}))
 })
 
 module.exports = app;
