@@ -3,6 +3,9 @@ const app = express();
 const body = require('body-parser');
 
 const mongoose = require('mongoose');
+const Thing = require('./models/thing');
+
+
 
 
 mongoose.connect('mongodb+srv://username:passwordYassPass123@cluster0.yavfl.mongodb.net/cluster0?retryWrites=true&w=majority',
@@ -23,10 +26,16 @@ app.use((req, res, next) => {
   });
 
   app.post('/api/stuff', (req, res, next) => {
-    console.log(req.body);
-    res.status(201).json({
-      message: 'Objet créé !'
+   
+    delete req.body._id;
+   
+    const thing = new Thing({
+      ...req.body
     });
+   
+    thing.save()
+    .then(()=> res.status(201).json({message:"objet thing added successfuly"}))
+    .catch((error)=> res.status(400).json({error}));
   });
   
 app.use('/api/stuff', (req, res, next) => {
