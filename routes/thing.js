@@ -1,15 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const ThingController = require("../controllers/thing");
+const auth = require('../middlewares/auth');
 
-router.post("/", ThingController.create);
+router.post("/",auth, ThingController.create);
 
-router.get("/", ThingController.getAll);
+router.get("/",auth, ThingController.getAll);
 
-router.get("/:id", ThingController.getOne);
+router.get("/:id",auth, ThingController.getOne);
 
-router.put("/:id", ThingController.update);
+router.put("/:id",auth, ThingController.update);
 
-router.delete("/:id", ThingController.delete);
+router.delete("/:id",auth, ThingController.delete);
 
 module.exports = router;
