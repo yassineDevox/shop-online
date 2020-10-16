@@ -4,7 +4,8 @@ const body = require("body-parser");
 const mongoose = require("mongoose");
 
 const ThingRoutes = require('./routes/thing');
-
+const UserRoutes = require('./routes/User');
+const auth = require('./middlewares/auth')
 
 mongoose
   .connect(
@@ -30,5 +31,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/stuff',ThingRoutes);
+app.use('/api/auth',UserRoutes);
 
 module.exports = app;
