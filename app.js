@@ -4,8 +4,7 @@ const body = require("body-parser");
 const mongoose = require("mongoose");
 
 const ThingRoutes = require('./routes/thing');
-const UserRoutes = require('./routes/User');
-const auth = require('./middlewares/auth')
+const UserRoutes = require('./routes/user');
 
 mongoose
   .connect(

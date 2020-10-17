@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const User = require('../models/user');
 
 exports.signin = (req, res) => {
+  console.log(req.body);
+
   User.findOne({ email: req.body.email })
     .then((user) => {
       if (!user) {
@@ -27,6 +31,9 @@ exports.signin = (req, res) => {
 };
 
 exports.signup = (req, res) => {
+
+  console.log(req.body);
+
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {

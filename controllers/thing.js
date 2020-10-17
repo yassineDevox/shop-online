@@ -1,13 +1,16 @@
 
-const Thing = require("./models/thing");
+const Thing = require("../models/thing");
 
 
 exports.create = (req, res) => {
-  console.log(req.body);
+
+  const thingObject = JSON.parse(req.body.thing);
+
   delete req.body._id;
 
   const thing = new Thing({
-    ...req.body,
+    ...thingObject,
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
 
   thing
