@@ -34,7 +34,15 @@ exports.getOne = (req, res) => {
     .catch((error) => res.status(404).json({ error }));
 };
 exports.update = (req, res) => {
-  Thing.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+
+  const objet = req.file ? 
+  {
+    ...JSON.parse(req.body.thing),
+    imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  
+  } : { ...req.body }
+
+  Thing.updateOne({ _id: req.params.id }, { ...objet,_id:req.params.id })
     .then(() => res.status(201).json({ message: "thing updated successfully" }))
     .catch((err) => res.status(400).json({ err }));
 };

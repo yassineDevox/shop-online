@@ -1,3 +1,9 @@
-export const USERNAME="username";
-export const PASSWORD="passwordYassPass123";
-export const CLUSTER_NAME="cluster0";
+exports.USERNAME = () => {
+  "username";
+};
+exports.PASSWORD = () => {
+  "passwordYassPass123";
+};
+exports.CLUSTER_NAME = () => {
+  "cluster0";
+};

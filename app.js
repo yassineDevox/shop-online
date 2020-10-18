@@ -12,13 +12,11 @@ const UserRoutes = require("./routes/user");
 
 //-------config
 const config = require("./config/variables");
+const path = require('path')
 
 mongoose
   .connect(
-    `mongodb+srv:// ${config.USERNAME}:
-                    ${config.PASSWORD}@
-                    ${config.CLUSTER_NAME}.
-                    yavfl.mongodb.net/cluster0?retryWrites=true&w=majority`,
+    `mongodb+srv://username:passwordYassPass123@cluster0.yavfl.mongodb.net/cluster0?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
@@ -41,5 +39,6 @@ app.use((req, res, next) => {
 
 app.use("/api/stuff", ThingRoutes);
 app.use("/api/auth", UserRoutes);
+app.use("/images",express.static(path.join(__dirname,'images')));
 
 module.exports = app;
