@@ -20,7 +20,7 @@ exports.signin = (req, res) => {
             userId: user._id,
             token: jwt.sign(
                 { userId: user._id },
-                'FANNI_I_LOVE_YOU',
+                'FANNI + YASSINE = 💖💖💖💖',
                 { expiresIn: '24h' }
               ),
           });

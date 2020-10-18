@@ -1,14 +1,24 @@
+//-----------express 
 const express = require("express");
 const app = express();
+
+//---------libs
 const body = require("body-parser");
 const mongoose = require("mongoose");
 
-const ThingRoutes = require('./routes/thing');
-const UserRoutes = require('./routes/user');
+//-----------routes
+const ThingRoutes = require("./routes/thing");
+const UserRoutes = require("./routes/user");
+
+//-------config
+const config = require("./config/variables");
 
 mongoose
   .connect(
-    "mongodb+srv://username:passwordYassPass123@cluster0.yavfl.mongodb.net/cluster0?retryWrites=true&w=majority",
+    `mongodb+srv:// ${config.USERNAME}:
+                    ${config.PASSWORD}@
+                    ${config.CLUSTER_NAME}.
+                    yavfl.mongodb.net/cluster0?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
@@ -29,7 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/stuff',ThingRoutes);
-app.use('/api/auth',UserRoutes);
+app.use("/api/stuff", ThingRoutes);
+app.use("/api/auth", UserRoutes);
 
 module.exports = app;
